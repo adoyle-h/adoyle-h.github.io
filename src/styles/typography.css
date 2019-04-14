@@ -1,0 +1,159 @@
+.grt {
+    max-width: 1024px;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 20px;
+    line-height: 36px;
+    padding: 22px;
+}
+
+.grt h1 {
+    font-size: 41px;
+    line-height: 64px;
+    margin-bottom: 36px;
+}
+
+.grt .title {
+    font-size: 52px;
+    line-height: 78px;
+    margin-bottom: 36px;
+}
+
+.grt h2 {
+    font-size: 32px;
+    line-height: 52px;
+    margin-top: 58px;
+    margin-bottom: 22px;
+}
+
+.grt h3 {
+    font-size: 25px;
+    line-height: 43px;
+    margin-top: 36px;
+    margin-bottom: 14px;
+}
+
+.grt h4 {
+    font-size: 20px;
+    line-height: 36px;
+    font-weight: bold;
+    margin-bottom: 9px;
+}
+
+.grt p,
+.grt ul,
+.grt ol,
+.grt blockquote,
+.grt pre,
+.grt .alert,
+.grt .note,
+.grt .box,
+.grt .footnotes {
+    margin-bottom: 36px;
+}
+
+.grt ul,
+.grt ol {
+    margin-left: 36px;
+}
+
+.grt blockquote {
+    padding-left: 22px;
+    border-style: solid;
+    border-color: rgba(0, 0, 0, 0.15);
+    border-width: 0 0 0 9px;
+}
+
+.grt blockquote.right,
+.grt blockquote.left {
+    font-size: 32px;
+    line-height: 52px;
+    padding-left: 0;
+    border: 0;
+    margin-bottom: 22px;
+}
+
+.grt sub,
+.grt sup {
+    padding: 0 1px;
+}
+
+.grt code,
+.grt pre,
+.grt kbd {
+    font-size: 17px;
+}
+
+.grt code {
+    background-color: rgba(0, 0, 0, 0.08);
+    padding: 5px 6px;
+    border-radius: 9px;
+    margin: 0 1px;
+}
+
+.grt pre {
+    padding: 14px 22px 22px 14px;
+    border-style: solid;
+    border-color: rgba(0, 0, 0, 0.15);
+    border-width: 0 0 0 9px;
+}
+
+.grt kbd {
+    background-color: #fff;
+    padding: 5px 6px;
+    border-radius: 6px;
+    box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.45);
+    margin: 0 1px;
+}
+
+.grt .alert,
+.grt .note,
+.grt .box {
+    padding: 22px;
+}
+
+.grt .footnotes {
+    font-size: 16px;
+    line-height: 31px;
+    padding-top: 22px;
+    border-top: 1px dotted rgba(0, 0, 0, 0.15);
+}
+
+.grt .footnotes p {
+    margin-bottom: 22px;
+}
+
+.grt ul ul,
+.grt ul ol,
+.grt ol ul,
+.grt ol ol,
+.grt blockquote.right p,
+.grt blockquote.left p,
+.grt .alert :last-child,
+.grt .note :last-child,
+.grt .box :last-child,
+.grt .footnotes :last-child {
+    margin-bottom: 0;
+}
+
+@media all and (min-width: 633px) {
+    .grt blockquote.right,
+    .grt blockquote.left {
+        width: 38.2%;
+    }
+
+    .grt blockquote.right {
+        float: right;
+        margin-left: 36px;
+    }
+
+    .grt blockquote.left {
+        float: left;
+        margin-right: 36px;
+    }
+}
+
+@media all and (min-width: 1096px) {
+    .grt {
+        padding: 36px;
+    }
+}

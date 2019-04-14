@@ -1,0 +1,8 @@
+noMatch:
+  component: pages/not-found
+
+routes:
+  - path: /
+    component: pages/home
+  - path: /404
+    component: pages/not-found

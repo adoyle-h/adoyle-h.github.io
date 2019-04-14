@@ -1,0 +1,8 @@
+{
+    root: true,
+    extends: [
+        "adoyle-style/node",
+    ],
+    rules: {
+    },
+}

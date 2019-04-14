@@ -1,0 +1,71 @@
+{
+  "name": "adoyle-h.github.io",
+  "version": "0.1.0",
+  "license": "https://tldrlegal.com/license/all-rights-served",
+  "description": "My website",
+  "author": "ADoyle <adoyle.h@gmail.com>",
+  "private": true,
+  "bugs": {
+    "url": "https://github.com/adoyle-h/adoyle-h.github.io/issues"
+  },
+  "homepage": "https://github.com/adoyle-h/adoyle-h.github.io#readme",
+  "scripts": {
+    "start": "razzle start",
+    "build": "razzle build",
+    "test": "razzle test --env=jsdom",
+    "start:prod": "NODE_ENV=production node build/server.js"
+  },
+  "engines": {
+    "node": ">=10.15.0"
+  },
+  "keywords": [
+    "adoyle",
+    "website"
+  ],
+  "browserslist": [
+    ">1%",
+    "last 4 versions",
+    "Firefox ESR",
+    "maintained node versions",
+    "not ie < 11"
+  ],
+  "dependencies": {
+    "@adoyle.me/winston-logger": "~0.1.0",
+    "@loadable/component": "^5.7.0",
+    "express": "^4.16.4",
+    "i18next": "^15.0.9",
+    "i18next-browser-languagedetector": "^3.0.1",
+    "i18next-xhr-backend": "^2.0.1",
+    "immer": "^2.1.5",
+    "keymaster": "^1.6.2",
+    "lodash": "^4.17.11",
+    "normalize.css": "^8.0.1",
+    "pino": "^5.12.2",
+    "prop-types": "^15.7.2",
+    "razzle": "^2.4.1",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-helmet": "^5.2.0",
+    "react-i18next": "^10.7.0",
+    "react-router-dom": "^5.0.0",
+    "styled-components": "^4.2.0",
+    "styled-system": "^4.1.0",
+    "stylelint-config-standard": "^18.2.0",
+    "toml": "^3.0.0",
+    "urijs": "^1.19.1",
+    "winston": "^3.2.1",
+    "xstate": "^4.4.0"
+  },
+  "devDependencies": {
+    "babel-eslint": "^10.0.1",
+    "eslint": "^5.16.0",
+    "eslint-config-adoyle-style": "^4.0.0",
+    "eslint-plugin-babel": "^5.3.0",
+    "eslint-plugin-import": "^2.17.0",
+    "eslint-plugin-jsx-a11y": "^6.2.1",
+    "eslint-plugin-react": "^7.12.4",
+    "js-yaml": "^3.13.1",
+    "loader-utils": "^1.2.3",
+    "open": "^6.1.0"
+  }
+}
