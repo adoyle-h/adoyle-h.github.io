@@ -1,8 +1,13 @@
-import {injectGlobal} from 'emotion';
+import {createGlobalStyle} from 'styled-components';
+import theme from 'styled-theming';
+import 'normalize.css';
 import './typography.css';
 
-// eslint-disable-next-line no-unused-expressions
-injectGlobal`
+const bgColor = theme('theme', {
+    'hack-world': 'red',
+});
+
+export default createGlobalStyle`
     html {
         height: 100%;
         box-sizing: border-box;
@@ -13,6 +18,7 @@ injectGlobal`
         min-height: 100%;
         height: auto;
         display: flex;
+        background-color: ${bgColor};
     }
 
     #root {

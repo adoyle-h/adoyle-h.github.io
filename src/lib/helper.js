@@ -1,8 +1,8 @@
 // A collection of helper functions
 
-import assert from './assert';
 import moment from 'moment';
 import util from 'lodash';
+import assert from './assert';
 
 const debug = require('debug')('helper');
 
@@ -29,10 +29,8 @@ const debug = require('debug')('helper');
  * // => {type: 'add'}
  */
 export function action(...args) {
-    let namespace;
     // eslint-disable-next-line no-shadow
-    let action;
-    let payload;
+    let namespace, action, payload;
     let payloadPassed = true;
     if (args.length === 3) {
         namespace = args[0];
@@ -47,7 +45,7 @@ export function action(...args) {
     } else {
         throw new Error('helper.action need at least one argument!');
     }
-    const type = [namespace, action].filter(x => x !== undefined).join('/');
+    const type = [namespace, action].filter((x) => x !== undefined).join('/');
     assert(type, 'type should not be empty');
 
     if (payloadPassed && payload === undefined) {

@@ -1,3 +1,1 @@
-import axios from 'axios';
-
-export {axios};
+export {default as axios} from 'axios';

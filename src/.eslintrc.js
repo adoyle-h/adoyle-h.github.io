@@ -12,6 +12,14 @@ module.exports = {
         "adoyle-style/plugin/react",
         "adoyle-style/plugin/babel",
     ],
+    rules: {
+        'no-console': 1,
+        'react/prop-types': 0,
+        'no-magic-numbers': 0,
+    },
+    globals: {
+        require: false,
+    },
     settings: {
         'import/resolver': {
             [Path.resolve(__dirname, '../razzle/eslint/import-resolver.js')]: {}

@@ -1,24 +1,27 @@
 import i18n from 'i18next';
-// import XHRBackend from 'i18next-xhr-backend';
+import XHRBackend from 'i18next-xhr-backend';
 import LanguageDetector from 'i18next-browser-languagedetector';
 import {initReactI18next} from 'react-i18next';
+import axios from 'axios';
 import siteConfig from 'src/site';
-import en from './en.toml';
-import zhCN from './zh-CN.toml';
+import {envConf} from 'src/env-config';
 
-const resources = {};
-const addResource = (lang, resource) => {
-    resources[lang] = {
-        translation: resource,
-    };
-};
-addResource('en', en);
-addResource('zh-CN', zhCN);
+// import en from './en.toml';
+// import zhCN from './zh-CN.toml';
+
+// const resources = {};
+// const addResource = (lang, resource) => {
+//     resources[lang] = {
+//         translation: resource,
+//     };
+// };
+// addResource('en', en);
+// addResource('zh-CN', zhCN);
 
 i18n
     // load translation using xhr -> see /public/locales
     // learn more: https://github.com/i18next/i18next-xhr-backend
-    // .use(XHRBackend)
+    .use(XHRBackend)
     // detect user language
     // learn more: https://github.com/i18next/i18next-browser-languageDetector
     .use(LanguageDetector)
@@ -27,18 +30,47 @@ i18n
     // init i18next
     // for all options read: https://www.i18next.com/overview/configuration-options
     .init({
-        resources,
+        debug: false,
+        // resources,
         lng: siteConfig.language,
-        fallbackLng: 'en',
-        debug: true,
+        /**
+         * i18n will load three lang files zh-CN/zh/en by default.
+         * So I tried to change the fallbackLng to prevent load zh file, but nothing work.
+         *
+         * - https://github.com/i18next/i18next/issues/940
+         * - https://www.i18next.com/principles/fallback#locals-resolving
+         */
+        fallbackLng: ['common', 'en'],
+
+        react: {
+            /**
+             * Refer below links:
+             * - https://github.com/i18next/react-i18next/issues/715
+             * - https://github.com/i18next/react-i18next/issues/735#issuecomment-463572416
+             */
+            useSuspense: false,
+        },
+
+        detection: {
+        },
 
         interpolation: {
             escapeValue: false, // not needed for react as it escapes by default
         },
 
         backend: {
-            loadPath: '/i18n/{{lng}}/{{ns}}.json',
+            // axios has parsed body
+            parse: (data) => data,
+            ajax: (url, _options, callback) => {
+                axios.get(url, {
+                    baseURL: `${envConf.SERVER_PROTOCOL}//${envConf.SERVER_HOST}:${envConf.SERVER_PORT}`,
+                })
+                    .then((res) => callback(res.data, res))
+                    .catch((err) => callback(null, err.response ? err.response : {status: 500}));
+            },
+            loadPath: '/static/i18n/{{lng}}.json',
+            // loadPath: (lng, ns) => `/public/static/i18n/${lng}/${ns}.json`,
         },
     });
 
-export {i18n, resources};
+export {i18n};

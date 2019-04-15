@@ -1,1 +1,1 @@
-export {default} from './index.yaml';
+export {default} from './config.yaml';

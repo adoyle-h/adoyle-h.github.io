@@ -1,6 +1,6 @@
 import {Machine, interpret} from 'xstate';
 import siteConfig from 'src/site';
-import {i18n, resources} from 'src/i18n';
+import {i18n} from 'src/i18n';
 import {useTranslation} from 'react-i18next';
 
 class App {
@@ -8,11 +8,18 @@ class App {
 
     i18n = {
         i18n,
-        resources,
     };
 
     models = {};
     services = {};
+
+    version = 'test';
+
+    constructor() {
+        if (typeof window !== 'undefined') {
+            this.env = window.env;
+        }
+    }
 
     loadModel({namespace, statechart}) {
         const machine = new Machine({
@@ -28,6 +35,10 @@ class App {
 
     injectWindow() {
         if (typeof window !== 'undefined') window.app = this;
+    }
+
+    getEnv(name) {
+        return this.env[name];
     }
 
     get t() {

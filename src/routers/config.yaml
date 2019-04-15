@@ -1,8 +1,13 @@
-noMatch:
-  component: pages/not-found
+theme:
+  routes:
+    - path: /
+      component: pages/home
+
+  noMatch:
+    component: pages/404
 
 routes:
-  - path: /
-    component: pages/home
-  - path: /404
-    component: pages/not-found
+  - path: /doge
+    component: pages/magic-img
+  - path: /nyancat
+    component: pages/magic-img

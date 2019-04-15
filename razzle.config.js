@@ -11,6 +11,9 @@ module.exports = {
         localPlugin('yaml'),
         localPlugin('toml'),
         localPlugin('alias'),
+        // last 2nd
+        localPlugin('i18n'),
+        // last
         localPlugin('debug-config'),
     ],
 };

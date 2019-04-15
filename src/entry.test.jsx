@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {MemoryRouter} from 'react-router-dom';
-import App from './app';
+import {Entry} from './entry';
 
 /* globals describe,test */
 
@@ -10,7 +10,7 @@ describe('<App />', () => {
         const div = document.createElement('div');
         ReactDOM.render(
             <MemoryRouter>
-                <App />
+                <Entry />
             </MemoryRouter>,
             div
         );

@@ -4,7 +4,7 @@ const {getOptions} = require('loader-utils');
 const Toml = require('toml');
 const Logger = require('../../logger');
 
-const _logger = Logger.create({label: 'webpack:plugin:toml', noConsole: false});
+const _logger = Logger.create({label: 'webpack:plugin:toml'});
 
 module.exports = function(source) {
     // eslint-disable-next-line no-unused-expressions

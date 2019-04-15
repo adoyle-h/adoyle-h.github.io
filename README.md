@@ -16,7 +16,7 @@ See the [NOTICE][] file distributed with this work for additional information re
 
 ```sh
 npm install
-rm -rf node_modules/razzle/node_modules/eslint
+npm run fix:eslint
 npm start
 ```
 
@@ -24,7 +24,7 @@ npm start
 
 ```sh
 npm install
-rm -rf node_modules/razzle/node_modules/eslint
+npm run fix:eslint
 npm run build
 ```
 

@@ -4,7 +4,7 @@ const {getOptions} = require('loader-utils');
 const yaml = require('js-yaml');
 const Logger = require('../../logger');
 
-const _logger = Logger.create({label: 'webpack:plugin:yaml', noConsole: false});
+const _logger = Logger.create({label: 'webpack:plugin:yaml'});
 
 module.exports = function(source) {
     // eslint-disable-next-line no-unused-expressions
