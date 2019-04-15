@@ -10,7 +10,9 @@
   },
   "homepage": "https://github.com/adoyle-h/adoyle-h.github.io#readme",
   "scripts": {
+    "fix": "npm-run-all fix:eslint fix:babel",
     "fix:eslint": "rm -rf ./node_modules/razzle/node_modules/eslint",
+    "fix:babel": "rm -rf node_modules/razzle/node_modules/babel-loader/",
     "start": "PORT=${PORT:-3000} npm-run-all -p start:razzle open",
     "open": "open-cli http://localhost:${PORT:-3000}",
     "start:razzle": "razzle start",
@@ -36,6 +38,7 @@
   "dependencies": {
     "@adoyle.me/winston-logger": "^0.1.2",
     "@loadable/component": "^5.7.0",
+    "@loadable/server": "^5.8.0",
     "axios": "^0.18.0",
     "debug": "^4.1.1",
     "express": "^4.16.4",
@@ -71,7 +74,11 @@
     "xstate": "^4.4.0"
   },
   "devDependencies": {
+    "@babel/core": "^7.4.3",
+    "@loadable/babel-plugin": "^5.8.0",
+    "@loadable/webpack-plugin": "^5.7.1",
     "babel-eslint": "^10.0.1",
+    "babel-loader": "^8.0.5",
     "eslint": "^5.16.0",
     "eslint-config-adoyle-style": "^4.0.0",
     "eslint-plugin-babel": "^5.3.0",

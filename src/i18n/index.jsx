@@ -30,7 +30,7 @@ i18n
     // init i18next
     // for all options read: https://www.i18next.com/overview/configuration-options
     .init({
-        debug: false,
+        debug: true,
         // resources,
         lng: siteConfig.language,
         /**
@@ -43,6 +43,10 @@ i18n
         fallbackLng: ['common', 'en'],
 
         react: {
+            // https://github.com/i18next/i18next-xhr-backend/tree/HEAD@%7B2017-09-26T12:15:10Z%7D
+            wait: true,
+            bindStore: false,
+            bindI18n: 'languageChanged',
             /**
              * Refer below links:
              * - https://github.com/i18next/react-i18next/issues/715

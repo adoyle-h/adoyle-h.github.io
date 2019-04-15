@@ -4,6 +4,8 @@ import {StaticRouter} from 'react-router-dom';
 import express from 'express';
 import {renderToString} from 'react-dom/server';
 import {Helmet} from 'react-helmet';
+import {ChunkExtractor} from '@loadable/server';
+import Path from 'path';
 import {envConf} from '../env-config';
 import Logger from './logger';
 import {Entry} from '../entry';
@@ -14,8 +16,10 @@ const _logger = Logger.create({label: 'server:index'});
 const assets = require(process.env.RAZZLE_ASSETS_MANIFEST);
 const isProd = process.env.NODE_ENV === 'production';
 
+const statsFile = Path.resolve('../../public/loadable-stats.json');
+
 /* eslint-disable indent */
-const renderHTML = (helmet, markup) => `<!doctype html>
+const renderHTML = (helmet, markup, extractor) => `<!doctype html>
     <html ${helmet.htmlAttributes.toString()}>
     <head>
         ${helmet.title.toString()}
@@ -26,6 +30,9 @@ const renderHTML = (helmet, markup) => `<!doctype html>
             ? `<link rel="stylesheet" href="${assets.client.css}">`
             : ''
         }
+
+        ${extractor.getLinkTags()}
+        ${extractor.getStyleTags()}
     </head>
 
     <body ${helmet.bodyAttributes.toString()}>
@@ -36,6 +43,7 @@ const renderHTML = (helmet, markup) => `<!doctype html>
             ? `<script src="${assets.client.js}" defer></script>`
             : `<script src="${assets.client.js}" defer crossorigin></script>`
         }
+        ${extractor.getScriptTags()}
     </body>
 </html>`;
 /* eslint-enable indent */
@@ -46,17 +54,18 @@ server
     .use(express.static(process.env.RAZZLE_PUBLIC_DIR))
     .get('/*', (req, res) => {
         const context = {};
-        const markup = renderToString(
+        const extractor = new ChunkExtractor({statsFile});
+        const markup = renderToString(extractor.collectChunks(
             <StaticRouter context={context} location={req.url}>
                 <Entry />
             </StaticRouter>
-        );
+        ));
         const helmet = Helmet.renderStatic();
 
         if (context.url) {
             res.redirect(context.url);
         } else {
-            res.status(200).send(renderHTML(helmet, markup));
+            res.status(200).send(renderHTML(helmet, markup, extractor));
         }
     });
 

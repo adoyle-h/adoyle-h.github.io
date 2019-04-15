@@ -1,5 +1,5 @@
 /* eslint-disable */
-import React from 'react';
+import React, {Fragment} from 'react';
 import {Switch, Route} from 'react-router-dom';
 import loadable from '@loadable/component';
 import siteConfig from 'src/site';
@@ -33,7 +33,9 @@ const createNoMatchRoute = () => {
     return <Route component={comp} />;
 };
 
-export default () => <Switch>
-    {routerConfig.routes.map(createRoute)}
-    {createNoMatchRoute()}
-</Switch>;
+export default () => <Fragment>
+    <Switch>
+        {routerConfig.routes.map(createRoute)}
+        {createNoMatchRoute()}
+    </Switch>
+</Fragment>;

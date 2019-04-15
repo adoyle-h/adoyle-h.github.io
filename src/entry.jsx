@@ -14,7 +14,7 @@ app.injectWindow();
 
 const {theme} = siteConfig;
 
-const GlobalStyle = loadable(() => import(`./themes/${theme}/styles`), {fallback: 'Loading global style'});
+const GlobalStyle = loadable(() => import(`./themes/${theme}/styles`), {fallback: ''});
 
 export const Entry = () => <ThemeProvider theme={{theme}}>
     <ErrorBoundary>
