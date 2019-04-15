@@ -19,7 +19,7 @@ module.exports = class I18nPlugin {
     }
 
     apply(compiler) {
-        compiler.hooks.done.tapPromise('I18nPlugin', async () => {
+        compiler.hooks.afterCompile.tapPromise('I18nPlugin', async () => {
             const {inputDir, inputExt, outputDir} = this.opts;
             const inputGlob = Path.join(inputDir, `*${inputExt}`);
 
@@ -37,19 +37,20 @@ module.exports = class I18nPlugin {
 
             const tasks = {};
 
-            await entries.map(async (path) => {
+            await Promise.all(entries.map(async (path) => {
                 const tomlStr = await readFile(path);
                 const json = Toml.parse(tomlStr);
 
                 const lang = Path.basename(path, inputExt);
                 tasks[lang] = Object.assign(tasks[lang] || {}, json);
-            });
+            }));
 
-            await Object.keys(tasks).map((lang) => {
+            logger.debug('tasks=%O', tasks);
+            await Promise.all(Object.keys(tasks).map((lang) => {
                 const jsonStr = JSON.stringify(tasks[lang]);
                 const outputPath = Path.join(outputDir, `${lang}.json`);
                 return writeFile(outputPath, jsonStr);
-            });
+            }));
         });
     }
 };

@@ -1,13 +1,12 @@
-theme:
-  routes:
-    - path: /
-      component: pages/home
-
-  noMatch:
-    component: pages/404
+noMatch:
+  themePage: 404
 
 routes:
+  - path: /
+    themePage: home
+
   - path: /doge
-    component: pages/magic-img
+    page: magic
+
   - path: /nyancat
-    component: pages/magic-img
+    page: magic

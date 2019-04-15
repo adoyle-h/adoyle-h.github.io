@@ -8,42 +8,32 @@ import routerConfig from './config.yaml';
 
 const {theme} = siteConfig;
 
-// const createRoute = (config) => {
-//     const {path, component} = config;
-//     const comp = loadable(() => import(`../${component}`), {fallback: Loading});
-//     return <Route key={path} exact path={path} component={comp} />;
-// };
+const createRoute = (config) => {
+    const {path, page, themeComp, themePage} = config;
 
-// const createThemeRoute = (config) => {
-//     const {path, component} = config;
-//     const comp = loadable(() => import(`../themes/${theme}/${component}`), {fallback: Loading});
-//     return <Route key={path} exact path={path} component={comp} />;
-// };
-
-const _createRoute = (importComp) => (config) => {
-    const {path} = config;
-    const comp = loadable(() => importComp(config), {fallback: Loading});
+    let importComp;
+    if (themePage) {
+        importComp = import(`../themes/${theme}/pages/${themePage}`);
+    } else if (themeComp) {
+        importComp = import(`../themes/${theme}/${themeComp}`);
+    } else if (page) {
+        /**
+         * FML https://github.com/webpack/webpack/tree/HEAD@%7B2019-01-03T01:19:40Z%7D
+         */
+        importComp = import(`../pages/${page}`);
+    } else {
+        throw new Error('page or themeComp must be set');
+    }
+    const comp = loadable(() => importComp, {fallback: Loading});
     return <Route key={path} exact path={path} component={comp} />;
-};
-
-// const createThemeRoute = _createRoute(({component}) => import('../src/pages/magic-img'));
-// const createRoute = _createRoute(({component}) => import('../src/pages/magic-img'));
-
-// const createNoMatchRoute = () => {
-//     const comp = loadable(() => import('../src/pages/magic-img'), {fallback: Loading});
-//     return <Route component={comp} />;
-// };
-
-const createThemeRoute = _createRoute(({component}) => import(`../themes/${theme}/${component}`));
-const createRoute = _createRoute(({component}) => import(`../${component}`));
+}
 
 const createNoMatchRoute = () => {
-    const comp = loadable(() => import(`../themes/${theme}/${routerConfig.theme.noMatch.component}`), {fallback: Loading});
+    const comp = loadable(() => import(`../themes/${theme}/pages/${routerConfig.noMatch.themePage}`), {fallback: Loading});
     return <Route component={comp} />;
 };
 
 export default () => <Switch>
     {routerConfig.routes.map(createRoute)}
-    {routerConfig.theme.routes.map(createThemeRoute)}
     {createNoMatchRoute()}
 </Switch>;
