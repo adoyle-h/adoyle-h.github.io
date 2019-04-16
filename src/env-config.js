@@ -6,10 +6,10 @@ const genEnvConfig = () => {
     let setEnv;
     if (typeof window === 'undefined') {
         // server
-        setEnv = (name, path = name, defa) => {
+        setEnv = (name, path, defaults) => {
             envs[name] = get(process.env, path);
-            if (envs[name] === undefined && defa !== undefined) {
-                envs[name] = defa;
+            if (envs[name] === undefined && defaults !== undefined) {
+                envs[name] = defaults;
             }
         };
 
@@ -17,6 +17,7 @@ const genEnvConfig = () => {
         setEnv('SERVER_HOST', 'HOST', 'localhost');
         setEnv('SERVER_PORT', 'PORT');
         setEnv('SERVER_NODE_ENV', 'NODE_ENV');
+        setEnv('BUILD_TARGET', 'BUILD_TARGET');
     } else {
         // client
         Object.assign(envs, window.env);

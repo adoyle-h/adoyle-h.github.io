@@ -1,7 +1,8 @@
 import {Machine, interpret} from 'xstate';
+import {useTranslation} from 'react-i18next';
 import siteConfig from 'src/site';
 import {i18n} from 'src/i18n';
-import {useTranslation} from 'react-i18next';
+import {envConf} from 'src/env-config';
 
 class App {
     siteConfig = siteConfig;
@@ -14,12 +15,7 @@ class App {
     services = {};
 
     version = 'test';
-
-    constructor() {
-        if (typeof window !== 'undefined') {
-            this.env = window.env;
-        }
-    }
+    envs = envConf;
 
     loadModel({namespace, statechart}) {
         const machine = new Machine({
@@ -38,7 +34,7 @@ class App {
     }
 
     getEnv(name) {
-        return this.env[name];
+        return this.envs[name];
     }
 
     get t() {
