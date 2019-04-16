@@ -3138,10 +3138,10 @@ escodegen@^1.9.1:
   optionalDependencies:
     source-map "~0.6.1"
 
-eslint-config-adoyle-style@^4.0.0:
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/eslint-config-adoyle-style/-/eslint-config-adoyle-style-4.0.0.tgz#080da681ddac65c2a638f57f7a62eed3fb7d8ad1"
-  integrity sha512-Un0QNiZ5lHs/9pZgZ+fQ2M682bIyUFOJK0D4RHTF1QnYLaYxTH6srNrUoSymO2X0hDjAzz0iM1tc5QwOacCjww==
+eslint-config-adoyle-style@^4.0.2:
+  version "4.0.2"
+  resolved "https://registry.yarnpkg.com/eslint-config-adoyle-style/-/eslint-config-adoyle-style-4.0.2.tgz#f81a20f577e3e1e4227cfee39b8212265427b85b"
+  integrity sha512-E3+tdoDY9WWRRKksFdRIog2KLz5z+Gi6xSubG/nJUbeokdBdF+u0/tG7hmG3zhlFPKMFXuwfmSs1GsWWxCLbig==
 
 eslint-config-react-app@^2.1.0:
   version "2.1.0"
@@ -3189,7 +3189,7 @@ eslint-plugin-flowtype@^2.35.0:
   dependencies:
     lodash "^4.17.10"
 
-eslint-plugin-import@^2.17.0, eslint-plugin-import@^2.7.0:
+eslint-plugin-import@^2.17.1, eslint-plugin-import@^2.7.0:
   version "2.17.1"
   resolved "https://registry.yarnpkg.com/eslint-plugin-import/-/eslint-plugin-import-2.17.1.tgz#b888feb4d9b3ee155113c8dccdd4bec5db33bdf4"
   integrity sha512-lzD9uvRvW4MsHzIOMJEDSb5MOV9LzgxRPBaovvOhJqzgxRHYfGy9QOrMuwHIh5ehKFJ7Z3DcrcGKDQ0IbP0EdQ==
