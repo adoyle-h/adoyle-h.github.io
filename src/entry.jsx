@@ -3,8 +3,8 @@ import ReactDOM from 'react-dom';
 import {app} from 'app';
 import {ThemeProvider} from 'styled-components';
 import loadable from '@loadable/component';
-import 'src/i18n';
-import siteConfig from 'src/site';
+import 'src/i18n/i18next';
+import siteConfig from 'src/site-config';
 
 import Routers from './routers';
 import Head from './components/head';
@@ -18,19 +18,17 @@ if (app.getEnv('SERVER_NODE_ENV') !== 'production'
     axe(React, ReactDOM, 1000);
 }
 
-app.injectWindow();
+app.start();
 
 const {theme} = siteConfig;
 
-const GlobalStyle = loadable(() => import(`./themes/${theme}/styles`), {fallback: 'Loading global style'});
+const GlobalStyle = loadable(() => import(`./themes/${theme}/styles`), {fallback: <Fragment />});
 
 export const Entry = () => <ThemeProvider theme={{theme}}>
     <ErrorBoundary>
-        <Fragment>
-            <GlobalStyle />
-            <Head />
-            <LangBar />
-            <Routers />
-        </Fragment>
+        <GlobalStyle />
+        <Head />
+        <LangBar />
+        <Routers />
     </ErrorBoundary>
 </ThemeProvider>;

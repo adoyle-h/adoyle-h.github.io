@@ -5,8 +5,5 @@ routes:
   - path: /
     themePage: home
 
-  - path: /doge
-    page: magic
-
-  - path: /nyancat
+  - path: /magic/:name
     page: magic

@@ -2,15 +2,13 @@ import React from 'react';
 import {app} from 'app';
 
 export default () => {
-    const ts = app.getTS('home');
-
     return <div>
-        <button onClick={() => app.changeLanguage('en')}>
-            {ts('button.en')}
+        <button type="button" onClick={() => app.changeLanguage('en')}>
+            English
         </button>
 
-        <button onClick={() => app.changeLanguage('zh-CN')}>
-            {ts('button.zhCN')}
+        <button type="button" onClick={() => app.changeLanguage('zh-CN')}>
+            中文
         </button>
     </div>;
 };

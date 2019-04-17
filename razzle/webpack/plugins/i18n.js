@@ -27,7 +27,6 @@ module.exports = class I18nPlugin {
             FS.mkdirSync(outputDir, {recursive: true});
 
             //  entries = [
-            //   'src/i18n/common.toml',
             //   'src/i18n/en.toml',
             //   'src/i18n/zh-CN.toml',
             //   'src/themes/hacker-world/i18n/zn-CN.toml'

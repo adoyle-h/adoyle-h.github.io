@@ -18,8 +18,8 @@ const map = {
     'nyancat': 'https://i.kym-cdn.com/photos/images/original/000/114/779/0002.gif',
 };
 
-export default ({location}) => {
-    const name = location.pathname.slice(1);
+export default ({match}) => {
+    const {name} = match.params;
 
     return <BG>
         <Info>

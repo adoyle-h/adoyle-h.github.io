@@ -1,17 +1,13 @@
 import {Machine, interpret} from 'xstate';
 import {useTranslation} from 'react-i18next';
-import siteConfig from 'src/site';
-import {i18n} from 'src/i18n';
+import siteConfig from 'src/site-config';
+import i18next from 'src/i18n/i18next';
 import {envConf} from 'src/env-config';
+import {history} from 'src/engine/hisotry';
 
 class App {
     siteConfig = siteConfig;
-
-    i18n = {
-        i18n,
-    };
-
-    models = {};
+    i18next = i18next;
     services = {};
 
     version = 'test';
@@ -30,7 +26,13 @@ class App {
     }
 
     injectWindow() {
-        if (typeof window !== 'undefined') window.app = this;
+        if (typeof window === 'undefined') return;
+        window.app = this;
+    }
+
+    async injectThemeApp() {
+        const {themeApp} = await import(`../../themes/${siteConfig.theme}/theme-app`);
+        themeApp.injectWindow();
     }
 
     getEnv(name) {
@@ -48,7 +50,23 @@ class App {
     }
 
     changeLanguage(lang) {
-        i18n.changeLanguage(lang);
+        if (typeof window === 'undefined') return;
+
+        const {pathname} = window.location;
+        const newPathname = pathname === '/'
+            ? `/${lang}`
+            : pathname.replace(/^\/([a-zA-Z0-9_-]+)(\/.+)?$/, (_, _p1, p2 = '') => {
+                return `/${lang}${p2}`;
+            });
+        if (pathname === newPathname) return;
+
+        history.push(newPathname);
+        i18next.changeLanguage(lang);
+    }
+
+    async start() {
+        this.injectWindow();
+        await this.injectThemeApp();
     }
 }
 

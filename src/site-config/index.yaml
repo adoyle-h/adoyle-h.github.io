@@ -1,7 +1,8 @@
 title: ADoyle's website
+description: A personal website created by ADoyle
 author: ADoyle
 contact:
   email: adoyle.h@gmail.com
 
 theme: hacker-world
-language: zh-CN
+defaultLanguage: zh-CN
