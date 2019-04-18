@@ -1,5 +1,5 @@
-noMatch:
-  themePage: 404
+# noMatch:
+#   themePage: 404
 
 routes:
   - path: /
@@ -7,3 +7,6 @@ routes:
 
   - path: /magic/:name
     page: magic
+
+  - path: /status_code/:code
+    page: status-code

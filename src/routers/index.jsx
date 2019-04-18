@@ -3,10 +3,11 @@ import {Switch, Route, Redirect} from 'react-router-dom';
 import loadable from '@loadable/component';
 import siteConfig from 'src/site-config';
 import i18next from 'src/i18n/i18next';
+import NoMatch from 'src/pages/404';
 import Loading from 'components/loading';
 import routerConfig from './config.yaml';
 
-const {theme} = siteConfig;
+const {theme, supportLanguages} = siteConfig;
 
 const createRoute = (match) => (config) => {
     const {page, themePage} = config;
@@ -28,7 +29,7 @@ const createRoute = (match) => (config) => {
     return <Route key={path} exact path={path} component={LoadComp} />;
 };
 
-const createNoMatchRoute = () => {
+const _createNoMatchRoute = () => {
     const LoadNoMatchComp = loadable(() => import(`../themes/${theme}/pages/${routerConfig.noMatch.themePage}`), {fallback: <Loading />});
     return <Route component={LoadNoMatchComp} />;
 };
@@ -36,13 +37,14 @@ const createNoMatchRoute = () => {
 const MainRoutes = ({match}) => {
     return <Switch>
         {routerConfig.routes.map(createRoute(match))}
-        {createNoMatchRoute()}
+        <NoMatch />
     </Switch>;
 };
 
 const I18nRouter = ({comp}) => <Switch>
-    <Redirect exact from="/" to={`/${i18next.language}`} />
-    <Route path="/:lang" component={comp} />
+    <Redirect key="/" exact from="/" to={`/${i18next.language}`} />
+    {supportLanguages.map((lang) => <Route key={`/${lang}`} path={`/${lang}`} component={comp} />)}
+    <NoMatch />
 </Switch>;
 
 export default () => <I18nRouter comp={MainRoutes} />;

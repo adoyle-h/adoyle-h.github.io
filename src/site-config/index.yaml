@@ -5,4 +5,8 @@ contact:
   email: adoyle.h@gmail.com
 
 theme: hacker-world
+
+supportLanguages:
+  - zh-CN
+  - en
 defaultLanguage: zh-CN

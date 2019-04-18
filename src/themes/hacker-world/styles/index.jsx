@@ -30,10 +30,4 @@ export default createGlobalStyle`
     *::before {
         box-sizing: inherit;
     }
-
-    a {
-        font: inherit;
-        color: inherit;
-        text-decoration: inherit;
-    }
 `;

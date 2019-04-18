@@ -11,6 +11,7 @@ export default () => <Helmet>
     <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
+
     {/* <!-- Short description of the document (limit to 150 characters) --> */}
     {/* <!-- This content *may* be used as a part of search engine results. --> */}
     <meta name="description" content={siteConfig.description} />
@@ -29,5 +30,6 @@ export default () => <Helmet>
         <title itemProp="name" lang={i18next.language}>{app.t('site.title')}</title>
     */}
     <title itemProp="name" lang={i18next.language}>{siteConfig.title}</title>
-    <link rel="shortcut icon" type="image/png" href={logo} sizes="16x16" />
+
+    <link rel="shortcut icon" type="image/png" href={logo} sizes="32x32" />
 </Helmet>;

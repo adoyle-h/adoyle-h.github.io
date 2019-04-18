@@ -18,7 +18,7 @@ util.forOwn(aliases, (dirPath, keyword) => {
 
 logger.debug('regexList=%O', regexList);
 
-exports.resolve = (source, file, _config) => {
+const genResolve = (regexList) => (source, file, _config) => {
     let path;
     // eslint-disable-next-line array-callback-return
     regexList.some(({regex, dirPath}) => {
@@ -84,3 +84,5 @@ exports.resolve = (source, file, _config) => {
         return {found: false};
     }
 };
+
+exports.resolve = genResolve(regexList);
