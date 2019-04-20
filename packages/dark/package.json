@@ -1,0 +1,39 @@
+{
+  "name": "@adoyle.me/website-theme-dark",
+  "version": "0.1.0",
+  "license": "https://tldrlegal.com/license/all-rights-served",
+  "description": "My website theme app",
+  "main": "app",
+  "author": "ADoyle <adoyle.h@gmail.com>",
+  "private": true,
+  "bugs": {
+    "url": "https://github.com/adoyle-h/adoyle-h.github.io/issues"
+  },
+  "homepage": "https://github.com/adoyle-h/adoyle-h.github.io#readme",
+  "scripts": {
+    "fix": "npm-run-all fix:*",
+    "fix:eslint": "rm -rf ./node_modules/razzle/node_modules/eslint",
+    "start": "PORT=${PORT:-3000} npm-run-all -p start:razzle open",
+    "open": "open-cli http://localhost:${PORT:-3000}",
+    "start:razzle": "razzle start",
+    "build": "razzle build",
+    "clean:build": "rm -rf ./build",
+    "test": "razzle test --env=jsdom",
+    "start:prod": "NODE_ENV=production node build/server.js"
+  },
+  "engines": {
+    "node": ">=10.15.0"
+  },
+  "browserslist": [
+    ">1%",
+    "last 4 versions",
+    "Firefox ESR",
+    "maintained node versions",
+    "not ie < 11"
+  ],
+  "dependencies": {
+    "@adoyle.me/website-basics": "*"
+  },
+  "devDependencies": {
+  }
+}

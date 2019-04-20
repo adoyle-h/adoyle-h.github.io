@@ -1,7 +1,6 @@
 ####### Project Ignores #######
 !.gitkeep
 build/
-public/static/i18n/
 
 ###############################
 

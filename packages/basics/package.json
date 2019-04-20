@@ -1,8 +1,9 @@
 {
-  "name": "adoyle-h.github.io",
+  "name": "@adoyle.me/website-basics",
   "version": "0.1.0",
   "license": "https://tldrlegal.com/license/all-rights-served",
-  "description": "My personal website",
+  "description": "My website theme app",
+  "main": "src/index.js",
   "author": "ADoyle <adoyle.h@gmail.com>",
   "private": true,
   "bugs": {
@@ -10,9 +11,15 @@
   },
   "homepage": "https://github.com/adoyle-h/adoyle-h.github.io#readme",
   "scripts": {
-    "bootstrap": "lerna bootstrap",
-    "clean": "npm-run-all clean:*",
-    "clean:all-pkg": "lerna clean"
+    "fix": "npm-run-all fix:*",
+    "fix:eslint": "rm -rf ./node_modules/razzle/node_modules/eslint",
+    "start": "PORT=${PORT:-3000} npm-run-all -p start:razzle open",
+    "open": "open-cli http://localhost:${PORT:-3000}",
+    "start:razzle": "razzle start",
+    "build": "razzle build",
+    "clean:build": "rm -rf ./build",
+    "test": "razzle test --env=jsdom",
+    "start:prod": "NODE_ENV=production node build/server.js"
   },
   "engines": {
     "node": ">=10.15.0"
@@ -25,13 +32,7 @@
     "not ie < 11"
   ],
   "dependencies": {
-    "lerna": "^3.13.3"
   },
   "devDependencies": {
-    "npm-run-all": "^4.1.5",
-    "stylelint": "^10.0.1",
-    "stylelint-config-recommended": "^2.2.0",
-    "stylelint-config-styled-components": "^0.1.1",
-    "stylelint-processor-styled-components": "^1.6.0"
   }
 }
