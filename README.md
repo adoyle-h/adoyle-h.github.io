@@ -14,8 +14,9 @@ See the [NOTICE][] file distributed with this work for additional information re
 
 ## Develop
 
+npm bootstrap
+
 ```sh
-npm install
 npm run fix:eslint
 npm start
 ```
@@ -23,7 +24,6 @@ npm start
 ## Build
 
 ```sh
-npm install
 npm run fix:eslint
 npm run build
 ```

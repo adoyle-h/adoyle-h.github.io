@@ -5,9 +5,10 @@ import siteConfig from 'src/site-config';
 import i18next from 'src/i18n/i18next';
 import NoMatch from 'pages/404';
 import PageLoading from 'pages/loading';
+import {app} from 'app';
 import routerConfig from './config.yaml';
 
-const {theme, supportLanguages} = siteConfig;
+const {supportLanguages} = siteConfig;
 
 const createRoute = (match) => (config) => {
     const {page, themePage} = config;
@@ -15,7 +16,7 @@ const createRoute = (match) => (config) => {
 
     let importComp;
     if (themePage) {
-        importComp = import(`@adoyle.me/website-theme-${theme}/pages/${themePage}`);
+        importComp = app.themeApp.getPage(themePage);
     } else if (page) {
         /**
          * FML https://github.com/webpack/webpack/tree/HEAD@%7B2019-01-03T01:19:40Z%7D

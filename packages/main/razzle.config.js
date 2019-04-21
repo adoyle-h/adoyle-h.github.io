@@ -8,8 +8,29 @@ const getPath = (path) => Path.join(__dirname, path);
 
 // Razzle default config at node_modules/razzle/config/createConfig.js
 
+
+const ignoreCompileJSInNodeModules = (config) => {
+    const {rules} = config.module;
+    const matchTests = [
+        '/\\.(js|jsx|mjs)$/',
+    ];
+
+    rules.forEach((rule) => {
+        if (!rules.test) return;
+        const test = rules.test.toString();
+        if (matchTests.includes(test)) {
+            const {exclude = []} = rule;
+            exclude.push(/node_modules/);
+            rule.exclude = exclude;
+        }
+    });
+    return config;
+};
+
+
 module.exports = {
     plugins: [
+        ignoreCompileJSInNodeModules,
         getRazzlePlugin('yaml'),
         getRazzlePlugin('toml'),
         {

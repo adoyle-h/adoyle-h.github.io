@@ -19,17 +19,20 @@ export default {
                     start: 'loading',
                 },
             },
+
             loading: {
                 on: {
                     loaded: 'running',
                     error: 'aberrant',
                 },
             },
+
             running: {
                 on: {
                     TOGGLE: 'inactive',
                 },
             },
+
             aberrant: {
             },
         },

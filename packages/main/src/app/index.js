@@ -1,9 +1,11 @@
+import React from 'react';
+import ReactDOM from 'react-dom';
 import {Machine, interpret} from 'xstate';
 import {useTranslation} from 'react-i18next';
 import siteConfig from 'src/site-config';
 import i18next from 'src/i18n/i18next';
 import {envConf} from 'src/env-config';
-import {history} from 'src/engineering/hisotry';
+import {history} from 'libs/history';
 
 class App {
     siteConfig = siteConfig;
@@ -16,8 +18,14 @@ class App {
 
     status = 'loading';
     themeApp = null;
+    _UI = null;
 
-    getUI() {
+    set UI(Comp) {
+        this._UI = Comp;
+    }
+
+    get UI() {
+        return this._UI;
     }
 
     loadModel({namespace, statechart}) {
@@ -38,15 +46,14 @@ class App {
     }
 
     async getThemeApp(name) {
-        const {themeApp} = import(`@adoyle.me/website-theme-${theme}`);
-
+        const {themeApp} = await import(`@adoyle.me/website-theme-${name}`);
         return themeApp;
     }
 
     async changeThemeApp(name) {
-        const {themeApp} = this;
+        const {themeApp, logger} = this;
         this.themeApp = await this.getThemeApp(name);
-        themeApp.destroy().catch((err) => {
+        themeApp.destroy().catch((error) => {
             logger.error(`Failed to destroy themeApp "${themeApp.name}"`);
             logger.error(`Error Message=${error.message}`);
             logger.error(`Error Stack=${error.stack}`);
@@ -88,11 +95,25 @@ class App {
     }
 
     async start() {
-        this.injectWindow();
-        await this.injectThemeApp();
+        const app = this;
+        app.injectWindow();
+        await app.injectThemeApp();
+        app.openAxe();
+    }
+
+    openAxe() {
+        const app = this;
+        if (app.getEnv('SERVER_NODE_ENV') !== 'production'
+            && app.getEnv('BUILD_TARGET') === 'client'
+        ) {
+            const axe = require('react-axe');
+            axe(React, ReactDOM, 1000);
+        }
     }
 }
 
 const app = new App();
+
+app.start();
 
 export {App, app};

@@ -9,10 +9,11 @@ import {Helmet} from 'react-helmet';
 import i18next from 'i18next';
 import {i18nextOpts} from 'src/i18n/i18next';
 import {withSSR} from 'react-i18next';
+// import {app} from 'app';
+import {Entry} from 'src/entry';
 import i18nextMW from 'i18next-express-middleware';
 import {envConf} from '../env-config';
 import Logger from './logger';
-import {Entry} from '../entry';
 
 // Below codes are Invalid! Because server codes are translated by Webpack! process.env.<var>
 // const {
@@ -62,6 +63,7 @@ const loadI18nStore = (lang, reloadLangStore) => {
     return i18nStoreMap[lang];
 };
 
+// const Entry = app.UI;
 const ssrI18next = i18next.createInstance();
 ssrI18next
     .use(i18nextMW.LanguageDetector)

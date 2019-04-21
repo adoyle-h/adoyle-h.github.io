@@ -1,0 +1,13 @@
+{
+    "exclude": 'node_modules/**',
+    "plugins": [
+        "@babel/plugin-external-helpers",
+    ],
+    "presets": [
+        ["@babel/env", {
+            useBuiltIns: "usage",
+            "modules": false
+        }],
+        "@babel/preset-react",
+    ]
+}

@@ -1,8 +1,12 @@
 {
-  "name": "@adoyle.me/website-theme-windows95",
+  "name": "@adoyle.me/website-theme-win95",
   "version": "0.1.0",
   "license": "https://tldrlegal.com/license/all-rights-served",
   "description": "My website theme app",
+  "main": "build/index.cjs.js",
+  "main.src": "src/index.js",
+  "module": "build/index.es.js",
+  "module.var": "WebsiteThemeWin95",
   "author": "ADoyle <adoyle.h@gmail.com>",
   "private": true,
   "bugs": {
@@ -23,13 +27,6 @@
   "engines": {
     "node": ">=10.15.0"
   },
-  "browserslist": [
-    ">1%",
-    "last 4 versions",
-    "Firefox ESR",
-    "maintained node versions",
-    "not ie < 11"
-  ],
   "dependencies": {
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
@@ -39,5 +36,14 @@
     "@adoyle.me/website-basics": "*",
     "react95": "^1.0.2"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "@adoyle.me/dev-tools": "*"
+  },
+  "peerDependencies": {
+    "normalize.css": "*",
+    "prop-types": "*",
+    "react": "*",
+    "react-dom": "*",
+    "styled-components": "*"
+  }
 }

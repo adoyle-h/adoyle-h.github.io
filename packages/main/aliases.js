@@ -15,9 +15,9 @@ exports.aliases = {
     // styles: absPath('styles'),
     assets: absPath('assets'),
     util: absPath('util'),
-    lib: absPath('lib'),
+    libs: absPath('libs'),
 
-    app$: absPath('engineering/app'),
+    app$: absPath('app'),
     consts$: absPath('consts'),
     assert$: absPath('lib', 'assert'),
     logger$: absPath('lib', 'logger'),

@@ -1,9 +1,6 @@
 'use strict';
 
-const {aliases} = require('../aliases');
-
 module.exports = {
-    root: true,
     extends: [
         "adoyle-style/browser",
         "adoyle-style/browser/es6",
@@ -18,16 +15,5 @@ module.exports = {
         'no-magic-numbers': 0,
     },
     globals: {
-        require: false,
     },
-    settings: {
-        'import/resolver': {
-            alias: {
-                map: Object.keys(aliases).map((key) => [
-                    key, aliases[key],
-                ]),
-                extensions: ['.jsx', '.js', '.json']
-            }
-        }
-    }
 };

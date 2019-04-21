@@ -1,11 +1,15 @@
 import React from 'react';
 import {BrowserRouter} from 'react-router-dom';
 import {hydrate} from 'react-dom';
-import {history} from 'src/engineering/hisotry';
-import {Entry} from './entry';
+import {history} from 'libs/history';
+import {app} from 'app';
+import {Entry} from 'src/entry';
+
+// const Entry = app.UI;
+app.Entry = Entry;
 
 hydrate(
-    <BrowserRouter history={history} >
+    <BrowserRouter history={history}>
         <Entry />
     </BrowserRouter>,
     document.getElementById('root')
