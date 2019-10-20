@@ -46,23 +46,31 @@ class App {
     }
 
     async getThemeApp(name) {
-        const {themeApp} = await import(`@adoyle.me/website-theme-${name}`);
-        return themeApp;
+        // @TODO Poor webpack dynamic import
+        // const {themeApp} = await import(`@adoyle.me/website-theme-${name}`);
+        let m;
+        if (name === 'dark') {
+            m = await import(`@adoyle.me/website-theme-dark`);
+        } else if (name === 'win95') {
+            m = await import(`@adoyle.me/website-theme-win95`);
+        } else {
+            throw new Error(`Invalid theme "${name}"`);
+        }
+        return m.themeApp;
     }
 
     async changeThemeApp(name) {
         const {themeApp, logger} = this;
         this.themeApp = await this.getThemeApp(name);
-        themeApp.destroy().catch((error) => {
-            logger.error(`Failed to destroy themeApp "${themeApp.name}"`);
-            logger.error(`Error Message=${error.message}`);
-            logger.error(`Error Stack=${error.stack}`);
-        });
-    }
+        this.themeApp.injectWindow();
 
-    async injectThemeApp() {
-        const {themeApp} = await import(`@adoyle.me/website-theme-${siteConfig.theme}`);
-        themeApp.injectWindow();
+        if (themeApp) {
+            themeApp.destroy().catch((error) => {
+                logger.error(`Failed to destroy themeApp "${themeApp.name}"`);
+                logger.error(`Error Message=${error.message}`);
+                logger.error(`Error Stack=${error.stack}`);
+            });
+        }
     }
 
     getEnv(name) {
@@ -97,7 +105,7 @@ class App {
     async start() {
         const app = this;
         app.injectWindow();
-        await app.injectThemeApp();
+        await app.changeThemeApp(siteConfig.theme);
         app.openAxe();
     }
 

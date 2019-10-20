@@ -6,7 +6,7 @@
   "browser": "build/index.umd.js",
   "main": "build/index.cjs.js",
   "main.src": "src/index.js",
-  "module": "build/index.es.js",
+  "module": "build/index.mjs",
   "module.var": "WebsiteBasics",
   "author": "ADoyle <adoyle.h@gmail.com>",
   "private": true,
@@ -25,16 +25,16 @@
     "node": ">=10.15.0"
   },
   "dependencies": {
-    "normalize.css": "^8.0.1",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
-    "styled-components": "^4.2.0"
+    "rollup-plugin-loadz0r": "^0.7.1",
+    "styled-components": "^4.2.0",
+    "styled-normalize": "^8.0.6"
   },
   "devDependencies": {
     "@adoyle.me/dev-tools": "*"
   },
   "peerDependencies": {
-    "normalize.css": "*",
     "prop-types": "*",
     "react": "*",
     "react-dom": "*",

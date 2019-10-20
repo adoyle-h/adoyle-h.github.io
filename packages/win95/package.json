@@ -5,7 +5,7 @@
   "description": "My website theme app",
   "main": "build/index.cjs.js",
   "main.src": "src/index.js",
-  "module": "build/index.es.js",
+  "module": "build/index.mjs",
   "module.var": "WebsiteThemeWin95",
   "author": "ADoyle <adoyle.h@gmail.com>",
   "private": true,

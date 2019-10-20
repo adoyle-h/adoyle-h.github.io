@@ -6,7 +6,7 @@
   "browser": "build/index.umd.js",
   "main": "build/index.cjs.js",
   "main.src": "src/app.js",
-  "module": "build/index.es.js",
+  "module": "build/index.mjs",
   "module.var": "WebsiteThemeDark",
   "author": "ADoyle <adoyle.h@gmail.com>",
   "private": true,
@@ -17,7 +17,8 @@
   "scripts": {
     "fix": "npm-run-all fix:*",
     "start": "rollup -c -w",
-    "build": "rollup -c",
+    "build": "npm-run-all clean:build build:once",
+    "build:once": "rollup -c",
     "clean": "npm-run-all clean:*",
     "clean:build": "rm -rf ./build"
   },
@@ -32,7 +33,8 @@
     "styled-components": "^4.2.0"
   },
   "devDependencies": {
-    "@adoyle.me/dev-tools": "*"
+    "@adoyle.me/dev-tools": "*",
+    "npm-run-all": "^4.1.5"
   },
   "peerDependencies": {
     "normalize.css": "*",

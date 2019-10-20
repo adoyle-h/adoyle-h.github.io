@@ -7,7 +7,7 @@
   "private": true,
   "workspaces": {
     "packages": ["stories/*" , "packages/*"],
-    "nohoist": ["**/eslint", "**/packages/main/@adoyle.me/website-theme-dark", "**/@adoyle.me/", "**/@adoyle.me/**", "**/dark", "**/dark/**"]
+    "nohoist": ["**/eslint", "**/@adoyle.me/", "**/@adoyle.me/**"]
   },
   "bugs": {
     "url": "https://github.com/adoyle-h/adoyle-h.github.io/issues"

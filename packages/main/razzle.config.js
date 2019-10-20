@@ -9,7 +9,7 @@ const getPath = (path) => Path.join(__dirname, path);
 // Razzle default config at node_modules/razzle/config/createConfig.js
 
 
-const ignoreCompileJSInNodeModules = (config) => {
+const _ignoreCompileJSInNodeModules = (config) => {
     const {rules} = config.module;
     const matchTests = [
         '/\\.(js|jsx|mjs)$/',
@@ -27,10 +27,32 @@ const ignoreCompileJSInNodeModules = (config) => {
     return config;
 };
 
+const _resolveModulesIncludeMyPkgs = (config) => {
+    config.resolve.modules.push();
+    return config;
+};
+
+const _fixCSSIncludeMissingMyPkgs = (config) => {
+    const {rules} = config.module;
+    const cssRule = rules.find(({test}) => test && test.toString() === '/.css$/');
+    if (cssRule) {
+        cssRule.include = [
+            Path.resolve(__dirname, '../basics/node_modules'),
+            Path.resolve(__dirname, '../dark/node_modules'),
+            Path.resolve(__dirname, '../win95/node_modules'),
+            Path.resolve(__dirname, '../basics'),
+            Path.resolve(__dirname, '../dark'),
+            Path.resolve(__dirname, '../win95'),
+        ];
+    }
+    return config;
+};
+
 
 module.exports = {
     plugins: [
-        ignoreCompileJSInNodeModules,
+        // ignoreCompileJSInNodeModules,
+        // fixCSSIncludeMissingMyPkgs,
         getRazzlePlugin('yaml'),
         getRazzlePlugin('toml'),
         {
